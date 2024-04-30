@@ -1,12 +1,14 @@
+import java.util.HashMap;
 class Solution {
     public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> twoSum = new HashMap<>();
+        //  value  , index
         for(int i = 0; i < nums.length; i++){
-            for(int j = i+1; j < nums.length; j++){
-                if(nums[i] + nums[j] == target){
-                    int[] keys = {i, j};
-                    return keys;
-                }
+            int difference = target - nums[i];
+            if(twoSum.containsKey(difference)){
+                return new int[] {twoSum.get(difference), i};
             }
+            twoSum.put(nums[i], i);
         }
         return null;
     }
